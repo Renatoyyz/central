@@ -13,12 +13,13 @@
 #define INPUT_PIN 21       // Pino GPIO para a entrada com interrupção
 #define OUTPUT_PIN 20      // Pino GPIO para a saída
 #define LED_PIN 25
+#define ID_DEVICE 0x02
 
 #define UART_ID uart0
 #define BAUD_RATE 9600
 #define DATA_BITS 8
 #define STOP_BITS 1
-#define PARITY    UART_PARITY_NONE
+#define PARITY UART_PARITY_NONE
 
 #define UART_RE_DE 2
 #define RE_DE_SEND 1
@@ -26,7 +27,6 @@
 
 #define UART_TX_PIN 0
 #define UART_RX_PIN 1
-
 
 #define PISTAO_RECUADO 0
 #define PISTAO_AVANCADO 1
@@ -190,7 +190,7 @@ int main() {
             sleep_ms(100);
             gpio_put(UART_RE_DE, RE_DE_RECV);
             break;
-            case 2:
+            case 3:
             toggle_led_fast();
             break;
 

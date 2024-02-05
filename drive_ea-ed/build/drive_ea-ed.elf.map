@@ -1528,9 +1528,9 @@ Discarded input sections
                 0x00000000        0x8 CMakeFiles/drive_ea-ed.dir/home/desenvolvimento/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
  .bss.lockout_victim_initialized
                 0x00000000        0x2 CMakeFiles/drive_ea-ed.dir/home/desenvolvimento/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
- .text          0x00000000        0x0 /tmp/cc46LCo3.o
- .data          0x00000000        0x0 /tmp/cc46LCo3.o
- .bss           0x00000000        0x0 /tmp/cc46LCo3.o
+ .text          0x00000000        0x0 /tmp/ccuTl3qs.o
+ .data          0x00000000        0x0 /tmp/ccuTl3qs.o
+ .bss           0x00000000        0x0 /tmp/ccuTl3qs.o
  .data          0x00000000        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .bss           0x00000000        0x0 /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .text          0x00000000       0x10 /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-atexit.o)
@@ -1794,7 +1794,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
 .boot2          0x10000000      0x100
                 0x10000000                        __boot2_start__ = .
  *(.boot2)
- .boot2         0x10000000      0x100 /tmp/cc46LCo3.o
+ .boot2         0x10000000      0x100 /tmp/ccuTl3qs.o
                 0x10000100                        __boot2_end__ = .
                 0x00000001                        ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
@@ -3521,7 +3521,7 @@ LOAD CMakeFiles/drive_ea-ed.dir/home/desenvolvimento/pico/pico-sdk/lib/tinyusb/s
 LOAD CMakeFiles/drive_ea-ed.dir/home/desenvolvimento/pico/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/rp2040_usb_device_enumeration.c.obj
 LOAD CMakeFiles/drive_ea-ed.dir/home/desenvolvimento/pico/pico-sdk/src/rp2_common/hardware_adc/adc.c.obj
 LOAD CMakeFiles/drive_ea-ed.dir/home/desenvolvimento/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
-LOAD /tmp/cc46LCo3.o
+LOAD /tmp/ccuTl3qs.o
 LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libstdc++.a
 LOAD /usr/lib/gcc/arm-none-eabi/12.2.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libm.a
 START GROUP
@@ -3646,7 +3646,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000852       0x2c CMakeFiles/drive_ea-ed.dir/home/desenvolvimento/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
  .ARM.attributes
-                0x0000087e       0x22 /tmp/cc46LCo3.o
+                0x0000087e       0x22 /tmp/ccuTl3qs.o
  .ARM.attributes
                 0x000008a0       0x1e /usr/lib/gcc/arm-none-eabi/12.2.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .ARM.attributes

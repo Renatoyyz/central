@@ -675,7 +675,7 @@ Disassembly of section .text:
 100005e0:	785b      	ldrb	r3, [r3, #1]
 100005e2:	2b01      	cmp	r3, #1
 100005e4:	d0b8      	beq.n	10000558 <main+0xc0>
-100005e6:	2b02      	cmp	r3, #2
+100005e6:	2b03      	cmp	r3, #3
 100005e8:	d0e9      	beq.n	100005be <main+0x126>
 100005ea:	f7ff ff37 	bl	1000045c <toggle_led>
 100005ee:	e7e4      	b.n	100005ba <main+0x122>
