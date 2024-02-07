@@ -27,6 +27,7 @@ source nome_ambiente/bin/activate
 Com o ambiente ativado instalamos as dependências:
 
 ```text
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
@@ -49,10 +50,10 @@ sudo apt-get install qtcreator
 Depois de instalado globalmente:
 
 ```text
-ln -s /usr/lib/python3/dist-packages/PyQt5/ myenv/lib/python3.11/site-packages/PyQt5
+ln -s /usr/lib/python3/dist-packages/PyQt5/ .env/lib/python3.11/site-packages/PyQt5
 ```
 
-Onde 'myenv' é o ambiente que foi criado.
+Onde '.env' é o ambiente que foi criado e pode ser qualquer nome.
 Isso garante que o ambiente virtual acesse o pacote instalado globalmente.
 
 ## Com o pacote PyQt5 instalado e o Qt Designer instalado

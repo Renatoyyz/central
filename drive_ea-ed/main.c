@@ -13,7 +13,7 @@
 #define INPUT_PIN 21       // Pino GPIO para a entrada com interrupção
 #define OUTPUT_PIN 20      // Pino GPIO para a saída
 #define LED_PIN 25
-#define ID_DEVICE 0x02
+uint8_t ID_DEVICE = 0x02;
 
 #define UART_ID uart0
 #define BAUD_RATE 9600
@@ -37,7 +37,8 @@
 char info_response[40];
 volatile uint32_t cnt_encoder_role = 0;
 char flag_pistao = PISTAO_RECUADO;
-char command[2];
+char command[12];
+uint8_t cmd_crc[12];
 
 //
 #define STATUS_HAB 1
@@ -108,6 +109,55 @@ void rs485_communication() {
     }
 }
 
+uint16_t crc16_modbus(){
+
+    uint16_t crc = 0xFFFF;
+
+    for( int i=0; i < 6; i++ ){
+
+        crc ^= cmd_crc[i];
+        for( int j=0; j < 8; j++ ){
+            if(crc & 0x0001){
+                crc >> 1;
+                crc ^= 0xA001;
+            }else{
+                crc >>= 1;
+            }
+        }
+    }
+  return crc;
+}
+
+bool chek_crc16_modbus(){
+    bool ret = false;
+    
+    uint8_t crc[4];
+
+    uint8_t H=0;
+    uint8_t L=0;
+
+    for( int i=0; i < 6; i++ ){
+        cmd_crc[i] = command[i];
+    }
+    for(int j=0;j<2;j++){
+        crc[j] = command[j+6];
+    }
+
+uint16_t cmp_crc = crc16_modbus();
+
+    H = (cmp_crc>>8) & 0x00FF;
+    L = cmp_crc & 0x00FF;
+
+if( (H == crc[0]) && (L == crc[1]) ){
+    ret = true;
+}else{
+    ret = false;
+}
+
+return ret;
+
+}
+
 int main() {    
     stdio_init_all();
 
@@ -169,7 +219,7 @@ int main() {
     tight_loop_contents();
 
     //Depois de ler RX da porta serial, trata comandos.
-    if((command[0] == 0x01)){
+    if((command[0] == ID_DEVICE)){
         switch(command[1]){
             case 1:
             char response[40];
@@ -190,7 +240,8 @@ int main() {
             sleep_ms(100);
             gpio_put(UART_RE_DE, RE_DE_RECV);
             break;
-            case 3:
+
+            case 2:
             toggle_led_fast();
             break;
 

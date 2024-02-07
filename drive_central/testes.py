@@ -13,7 +13,12 @@ ser = serial.Serial(
     #rtscts=True
 )
 
-rtu = RTU485(ser, devices_address=[1])
+devices = {
+        "mod-da-01": 2,
+        "mod-pta9b": 1
+}
+
+rtu = RTU485(ser, devices_address=devices)
 
 cmd = ""
 #01030204017b44
@@ -22,7 +27,7 @@ while(cmd.upper() != "Q"):
 
     try:
         retorno1 = rtu.enviar_e_receber_dados(int(cmd))
-        retorno = 1#rtu.temp_pta9b()
+        retorno = rtu.temp_pta9b()
         if retorno != -1:
             print(f'Modulo ed-ea: {retorno1}\nModulo Temperatura: {retorno}')
         else:

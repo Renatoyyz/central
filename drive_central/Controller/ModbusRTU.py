@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 from Controller.IO import InOut
 
 class RTU485(threading.Thread):
-    def __init__(self,serial, devices_address=[], mode = 'rtu'):
+    def __init__(self,serial, devices_address={}, mode = 'rtu'):
         threading.Thread.__init__(self)
 
         self._serial = serial
@@ -43,7 +43,7 @@ class RTU485(threading.Thread):
         dados_recebidos = None
         self.in_out.re_de_485(self.in_out.SEND_485)
 
-        self._serial.write([self._devices_address[0], comando_byte])
+        self._serial.write([self._devices_address['mod-da-01'], comando_byte])
         self._serial.flush()
         self.in_out.re_de_485(self.in_out.RECV_485)
 
@@ -58,7 +58,10 @@ class RTU485(threading.Thread):
         dados_recebidos = None
         self.in_out.re_de_485(self.in_out.SEND_485)
 
-        hex_text = f"0{self._devices_address[0]}0300010001" # Comando para leitura de resistencia do Modulo PTA9B
+        id_loc = hex(self._devices_address['mod-pta9b'])[2:]
+        id_loc = id_loc.zfill(2).upper()
+
+        hex_text = f"{id_loc}0300010001" # Comando para leitura de resistencia do Modulo PTA9B
 
         bytes_hex = bytes.fromhex(hex_text) # Transforma em hexa
 
@@ -67,8 +70,10 @@ class RTU485(threading.Thread):
         parte_superior = (crc_result >> 8) & 0xFF  # Desloca 8 bits para a direita e aplica a máscara 0xFF
         parte_inferior = crc_result & 0xFF        # Aplica a máscara 0xFF diretamente
 
+        id_loc = self._devices_address['mod-pta9b']
+
         # Repete-se os comandos em decimal com os devidos bytes de CRC
-        self._serial.write([self._devices_address[0], 3,0,1,0,1,parte_inferior,parte_superior])
+        self._serial.write([id_loc, 3,0,1,0,1,parte_inferior,parte_superior])
         self._serial.flush()
         self.in_out.re_de_485(self.in_out.RECV_485)
 
