@@ -1,5 +1,6 @@
 from Controller.ModbusRTU import RTU485
 import serial
+from time import sleep
 
 ser = serial.Serial(
     #port='/dev/ttyUSB0',  # Porta serial padrão no Raspberry Pi 4
@@ -12,9 +13,8 @@ ser = serial.Serial(
     xonxoff=False,         # Controle de fluxo por software (XON/XOFF)
     #rtscts=True
 )
-
 devices = {
-        "mod-da-01": 2,
+        "mod-eda": 2,
         "mod-pta9b": 1
 }
 
@@ -26,12 +26,19 @@ while(cmd.upper() != "Q"):
     cmd = input("Digitar comando\n")
 
     try:
-        retorno1 = rtu.enviar_e_receber_dados(int(cmd))
-        retorno = rtu.temp_pta9b()
-        if retorno != -1:
-            print(f'Modulo ed-ea: {retorno1}\nModulo Temperatura: {retorno}')
-        else:
-            print("Erro de comunicação com Módulo de temperatura\n")
+        if cmd == "1":
+            retorno = rtu.mod_eda() #rtu.enviar_e_receber_dados(int(cmd))
+            print(f'Modulo ead: {retorno}\n')
+        if cmd == "2":
+            retorno = rtu.temp_pta9b()
+            print(f'Modulo ptb9: {retorno}\n')
+        if cmd == "3":
+            retorno = rtu.mod_eda() #rtu.enviar_e_receber_dados(int(cmd))
+            print(f'Modulo ead: {retorno}\n')
+            sleep(1)
+            retorno = rtu.temp_pta9b()
+            print(f'Modulo ptb9: {retorno}\n')
+        
     except:
         continue
 rtu._serial.close()
